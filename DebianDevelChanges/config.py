@@ -39,6 +39,10 @@ conf.registerChannelValue(DebianDevelChanges, 'distribution_regex', registry.Reg
     '', "Determines which distribution announcements should be printed to the channel",
 ))
 
+conf.registerChannelValue(DebianDevelChanges, 'section_regex', registry.Regexp(
+    '', "Determines which section announcements should be printed to the channel",
+))
+
 conf.registerChannelValue(
   DebianDevelChanges, 'send_privmsg',
   registry.Boolean(False, "Determines if PRIVMSG or NOTICE should be sent on "

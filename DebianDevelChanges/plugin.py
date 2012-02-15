@@ -166,7 +166,16 @@ class DebianDevelChanges(supybot.callbacks.Plugin):
                         if maintainer_match:
                             break
 
-                if not package_match and not maintainer_match:
+                section_match = False
+                section_regex = self.registryValue(
+                    'section_regex',
+                    channel)
+                if section_regex:
+                    info = Section().get_section(msg.package)
+                    if info:
+                        section_match = re.search(section_regex, info['email'])
+
+                if not package_match and not maintainer_match and not section_match:
                     continue
 
                 distribution_regex = self.registryValue(
